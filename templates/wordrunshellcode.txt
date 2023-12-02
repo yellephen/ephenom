@@ -1,0 +1,21 @@
+$wordApp = New-Object -ComObject Word.Application
+$wordApp.Visible = $true
+$doc = $wordApp.Documents.Add()
+$paragraph = $doc.Content.Paragraphs.Add()
+$paragraph.Range.Text = "Hello"
+
+$project = $doc.VBProject
+$component = $project.VBComponents.Add([Microsoft.Vbe.Interop.vbext_ComponentType]::vbext_ct_StdModule)
+
+$code = @"
+[[[[macro]]]]
+"@
+
+$component.CodeModule.AddFromString($code)
+
+$filepath = "C:\\users\\ds_wa\\desktop\\poshtest.doc"
+$doc.SaveAs2($filepath,[Microsoft.Office.Interop.Word.WdSaveFormat]::wdFormatDocument97)
+$wordApp.Quit()
+[System.Runtime.Interopservices.Marshal]::ReleaseComObject($wordApp) | Out-Null
+[System.GC]::Collect()
+[System.GC]::WaitForPendingFinalizers()

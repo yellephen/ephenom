@@ -1,0 +1,28 @@
+{
+    "categories": [
+        "dll",
+        "shell code"
+    ],
+    "description": "Assembly that runs shell code for use with DotNetToJScript.",
+    "contentFile": "dllshellcodefordotnettojscript.txt",
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "csharp"
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "library",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "shell.dll"
+            }
+        ]
+    }
+}

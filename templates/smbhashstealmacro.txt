@@ -1,0 +1,20 @@
+Sub smb_connection()
+    Dim fso As Object
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    Dim folderPath As String
+    Dim folder As Object
+    Dim file As Object
+    
+    folderPath = "[[[[smbPath]]]]"
+    
+    If fso.FolderExists(folderPath) Then
+        MsgBox "Connected", vbInformation, "File List"
+    End If
+    Set fso = Nothing
+End Sub
+
+
+Sub AutoOpen()
+    smb_connection
+End Sub

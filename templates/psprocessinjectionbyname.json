@@ -1,0 +1,18 @@
+{
+    "category" : ["PowerShell","Process Injection"],
+    "description" : "Does a process injection with the chosen thing to do the thing that does the thing.",
+    "contentFile" : "psprocessinjectionbyname.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"processName",
+            "description" : "This will choose which process by name to inject the shell code into.",
+            "defaultValue" : "explorer.exe"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":true,
+        "format" : "ps1"
+    }
+}

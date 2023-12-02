@@ -1,0 +1,21 @@
+{
+    "categories": [
+        "aspx",
+        "xor",
+        "sleep evasion"
+    ],
+    "description": "ASPX page that runs shell code. XOR'd shell code with sleep sandbox evasion.",
+    "contentFile": "aspxshellcode.txt",
+    "customAttributes": [
+        {
+            "name": "xorByte",
+            "description": "The hex representation of the byte that the payload will be XOR'd with. Max 0xFF.",
+            "defaultValue": "0x22"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "csharp",
+        "processor": "ep_csharp_xor"
+    }
+}

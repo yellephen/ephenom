@@ -1,0 +1,42 @@
+{
+    "categories": [
+        "exe",
+        "xor",
+        "sleep evasion"
+    ],
+    "description": "Executable that runs shell code. XOR'd shell code with sleep sandbox evasion.",
+    "contentFile": "exeshellcodexorandsleep.txt",
+    "customAttributes": [
+        {
+            "name": "xorByte",
+            "description": "The hex representation of the byte that the payload will be XOR'd with. Max 0xFF.",
+            "defaultValue": "0x22"
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "csharp",
+        "processor": "ep_csharp_xor"
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "shell.exe"
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+  {
+    "categories" : ["Word"],
+    "description" : "Macro with an XOR'd payload and a sleep for sandbox evasion",
+    "contentFile" : "xormacro.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"xorByte",
+            "description" : "The decimal representation of the byte that the payload will be XOR'd with. Max 255.",
+            "defaultValue" : "29"   
+        }
+   ],
+     
+   "shellCode" : {
+        "hasShellCode" : true,
+        "format" : "csharp",
+        "processor" : "ep_word_xor"
+   }
+}
+

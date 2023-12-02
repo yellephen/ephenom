@@ -1,0 +1,10 @@
+{
+    "category" : ["PowerShell","Reflection"],
+    "description" : "Runs Shell Code with reflection.",
+    "contentFile" : "psrunshellcodereflection.txt",
+    
+     "shellCode" : {
+        "hasShellCode":true,
+        "format" : "ps1"
+    }
+}

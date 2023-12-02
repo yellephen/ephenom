@@ -1,0 +1,15 @@
+dllamsibypass - tested working
+dllfodhelperuac - tested working
+downloadmacro
+exeshellcodexorandsleep
+iexcradle
+psdechainedcradle
+psdlldownloadrun
+psdllreflectionrun
+psprocessinjectionbyname
+psrunshellcode
+psrunshellcodereflection - tested working
+smbhashstealmacro
+xormacro
+dllshellcoderunner - tested working
+jsscriptfromdllamsibypass - the dotenettojscript executable isn't working properly with mono - it outputs the .js with bad syntax.

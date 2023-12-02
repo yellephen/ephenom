@@ -1,0 +1,34 @@
+{
+    "categories": [
+        "exe",
+        "printspoofer"
+    ],
+    "description": "Executable that lets you listen for named pipe connections and impersonates the incoming user. Works from a non-interactive session such as stealing an IIS DefaultApp pool from a website.",
+    "contentFile": "printspoofernet_nonint.txt",
+    "customAttributes": [
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": false
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "printspoofernet_nonint.exe"
+            }
+        ]
+    }
+}

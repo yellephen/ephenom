@@ -1,0 +1,48 @@
+{
+    "categories": [
+        "exe",
+        "xor",
+        "sleep evasion",
+        "process injection"
+    ],
+    "description": "Executable that runs a process injection into the chosen process. XOR'd shell code with sleep sandbox evasion.",
+    "contentFile": "exeprocessinjection.txt",
+    "customAttributes": [
+        {
+            "name": "xorByte",
+            "description": "The hex representation of the byte that the payload will be XOR'd with. Max 0xFF.",
+            "defaultValue": "0x22"
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        },
+        {
+            "name":"processToInjectInto",
+            "description":"Process to inject into. For explorer.exe just put explorer.",
+            "defaultValue":"explorer"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "csharp",
+        "processor": "ep_csharp_xor"
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "shell.exe"
+            }
+        ]
+    }
+}

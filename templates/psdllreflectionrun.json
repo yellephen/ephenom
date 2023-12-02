@@ -1,0 +1,29 @@
+
+
+{
+    "categories" : ["PowerShell","DLL"],
+    "description" : "Download, saves and executes a DLL.",
+    "contentFile" : "psdllreflectionrun.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"downloadFrom",
+            "description" : "The URL to to download the assembly from.",
+            "defaultValue" : "http://192.168.45.155/run.dll"   
+        },
+        {
+            "name":"assemblyName",
+            "description" : "The name of the assembly to call into.",
+            "defaultValue" : "ClassLibrary1.Class1"   
+        },
+        {
+            "name":"methodName",
+            "description" : "The name of the method in the assembly to call",
+            "defaultValue" : "runner"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    }
+}

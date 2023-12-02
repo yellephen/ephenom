@@ -1,0 +1,49 @@
+{
+    "category" : ["assembly","Process Injection"],
+    "description" : "Does a process injection with the chosen thing to do the thing that does the thing.",
+    "contentFile" : "dllprocessinjection.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"assemblyName",
+            "description" : "Name of the assembly.",
+            "defaultValue" : "ClassLibrary1"   
+        },
+        {
+            "name":"className",
+            "description" : "Name of the class.",
+            "defaultValue" : "Class1"   
+        },
+        {
+            "name":"methodName",
+            "description" : "Name of the method.",
+            "defaultValue" : "Execute"   
+        },
+        {
+            "name":"processName",
+            "description" : "This will choose which process by name to inject the shell code into.",
+            "defaultValue" : "explorer.exe"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":true,
+        "format" : "csharp"
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "library",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "shell.dll"
+            }
+        ]
+    }
+}

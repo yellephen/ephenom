@@ -1,0 +1,9 @@
+{
+    "category" : ["PowerShell","Shell Code"],
+    "description" : "Powershell that runs shellcode.",
+    "contentFile" : "psrunshellcode.txt",
+    "shellCode" : {
+        "hasShellCode":true,
+        "format" : "ps1"
+    }
+}

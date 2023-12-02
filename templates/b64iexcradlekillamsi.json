@@ -1,0 +1,18 @@
+{
+    "categories" : ["PowerShell","Cradle"],
+    "description" : "Calls back to IEX a posh script.",
+    "contentFile" : "b64iexcradlekillamsi.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"callbackURL",
+            "description" : "The URL to call back to grab the posh script.",
+            "defaultValue" : "http://192.168.45.155/run.txt"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "obfuscator" : "ep_pwsh_base64"
+}

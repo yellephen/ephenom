@@ -1,0 +1,9 @@
+{
+    "category" : ["js","amsi"],
+    "description" : "JScript that bypasses AMSI with registry hack.",
+    "contentFile" : "jsamsibypass.txt",
+    
+    "shellCode" : {
+        "hasShellCode":false
+    }
+}

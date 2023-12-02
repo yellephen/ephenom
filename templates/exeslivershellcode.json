@@ -1,0 +1,68 @@
+{
+    "categories": [
+        "exe",
+        "sliver"
+    ],
+    "description": "Executable that contains the sliver shell code to connect back.",
+    "contentFile": "exeslivershellcode.txt",
+    "customAttributes": [
+        {
+            "name": "shellCodeType",
+            "description": "Can be [met] or [sliver].",
+            "defaultValue": "sliver"
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    "subCustomAttributes": [
+        {
+        "baseAtt" : "shellCodeType",
+        "baseVal" : "sliver",
+        "subs" : [
+            {
+                "name": "profileProtocol",
+                "description": "mtls or other.",
+                "defaultValue": "mtls"
+            },
+            {
+                "name": "profileArchitecture",
+                "description": "amd64 or other.",
+                "defaultValue": "amd64"
+            },
+            {
+                "name": "profileName",
+                "description": "Name of the profile or value of [generate] for ephenom-randomnumber.",
+                "defaultValue": "generate"
+            },
+            {
+                "name": "stageListener",
+                "description": "Url of the stage listener.",
+                "defaultValue": "http://192.168.43.130:2424"
+            }
+        ]
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "csharp"
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "stager.exe"
+            }
+        ]
+    }
+}
