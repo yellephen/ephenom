@@ -6,5 +6,15 @@
      "shellCode" : {
         "hasShellCode":true,
         "format" : "ps1"
+    },
+    "compilation" :{
+        "compilationType" : "powershell",
+        "compilationAttributes": [
+            {
+                "name": "saveAs",
+                "description": "Name of the powershell file to be created, can be full path or just a name",
+                "defaultValue": "run.txt"
+            }
+        ]
     }
 }

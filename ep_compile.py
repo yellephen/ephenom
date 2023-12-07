@@ -29,6 +29,9 @@ def compile(template,content):
             exit()
         else:
             print("Compilation successful.")
+        
+        with open(f"{out}","r") as file:
+            print(f"Saved to {os.path.abspath(file.name)}")
 
     elif template["compilationType"] == "macro":
          print("Not implemented yet. Printing payload.")
@@ -51,6 +54,9 @@ def compile(template,content):
             exit()
         else:
             print("Compilation successful.")
+        
+        with open(f"{out}","r") as file:
+            print(f"Saved to {os.path.abspath(file.name)}")
 
     elif template["compilationType"] == "jscript":    
         if os.path.exists("temp.cs"):
@@ -80,6 +86,15 @@ def compile(template,content):
             jscriptContent = jscriptContent.replace("WARNING: The runtime version supported by this application is unavailable.","")
             jscriptContent = jscriptContent.replace("Using default runtime: v4.0.30319","")
             ep_pipeline.ProcessHTA(jscriptContent,jsout)
+
+        with open(f"{out}","r") as file:
+            print(f"Saved to {os.path.abspath(file.name)}")
+
+    elif template["compilationType"] == "powershell":
+        out = attributes["saveAs"]
+        with open(f"{out}", 'w') as file:
+            file.write(content)
+        print(f"Saved to {os.path.abspath(file.name)}")
 
     else:
         print("Compilation type unknown, printing payload.")

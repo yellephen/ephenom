@@ -9,7 +9,7 @@
         {
             "name":"downloadFrom",
             "description" : "The URL to to download the assembly from.",
-            "defaultValue" : "http://192.168.45.155/run.dll"   
+            "defaultValue" : "http://[[[[ownIP]]]]/misc/run.dll"   
         },
         {
             "name":"assemblyName",

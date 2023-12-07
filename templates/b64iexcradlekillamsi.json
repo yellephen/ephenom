@@ -7,7 +7,7 @@
         {
             "name":"callbackURL",
             "description" : "The URL to call back to grab the posh script.",
-            "defaultValue" : "http://192.168.45.155/run.txt"   
+            "defaultValue" : "http://[[[[ownIP]]]]/misc/run.txt"   
         }
     ],
 

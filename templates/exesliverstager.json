@@ -9,7 +9,7 @@
         {
             "name": "callbackURL",
             "description": "URL from which the shell code will be downloaded.",
-            "defaultValue": "http://192.168.43.130:2424/fontawesome.woff"
+            "defaultValue": "http://[[[[ownIP]]]]:2424/fontawesome.woff"
         },
         {
             "name": "compile",

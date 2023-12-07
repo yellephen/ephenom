@@ -40,7 +40,7 @@
             {
                 "name": "stageListener",
                 "description": "Url of the stage listener.",
-                "defaultValue": "http://192.168.43.130:2424"
+                "defaultValue": "http://[[[[ownIP]]]]:2424"
             }
         ]
         }

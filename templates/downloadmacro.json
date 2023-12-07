@@ -7,7 +7,7 @@
         {
             "name":"downloadedFrom",
             "description" : "The URL where the executable will downloaded from.",
-            "defaultValue" : "http://192.168.45.222/shell.exe"   
+            "defaultValue" : "http://[[[[ownIP]]]]/misc/shell.exe"   
         },
         {
             "name":"downloadedAs",
