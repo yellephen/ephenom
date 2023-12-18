@@ -13,7 +13,7 @@ $code = @"
 
 $component.CodeModule.AddFromString($code)
 
-$filepath = "C:\\users\\ds_wa\\desktop\\poshtest.doc"
+$filepath = "[[[[wordDocOut]]]]"
 $doc.SaveAs2($filepath,[Microsoft.Office.Interop.Word.WdSaveFormat]::wdFormatDocument97)
 $wordApp.Quit()
 [System.Runtime.Interopservices.Marshal]::ReleaseComObject($wordApp) | Out-Null

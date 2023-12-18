@@ -17,5 +17,15 @@
         "hasShellCode": true,
         "format": "csharp",
         "processor": "ep_csharp_xor"
+    },
+    "compilation" :{
+        "compilationType" : "aspx",
+        "compilationAttributes": [
+            {
+                "name": "saveAs",
+                "description": "Name of the powershell file to be created, can be full path or just a name",
+                "defaultValue": "run.aspx"
+            }
+        ]
     }
 }

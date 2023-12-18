@@ -8,7 +8,7 @@ Function mymacro()
     Dim addr As LongPtr
     Dim counter As Long
     Dim data As Long
-    Dim res As Long
+    Dim res As LongPtr
     
     Dim t1 As Date
     Dim t2 As Date

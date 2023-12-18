@@ -1,0 +1,38 @@
+{
+    "categories": [
+        "elf",
+        "shellcode",
+        "XOR"
+    ],
+    "description": "Elf that runs XOR'd shell code. ",
+    "contentFile": "elfshellcodeforkXOR.txt",
+    "customAttributes": [
+        {
+            "name": "xorChar",
+            "description": "The char representation of the byte that the payload will be XOR'd with. Max 0xFF.",
+            "defaultValue": "J"
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "C",
+        "processor" : "ep_c_xor"
+
+    },
+    "compilation": {
+        "compilationType": "C",
+        "target": "elf",
+        "compilationAttributes": [
+             {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "shell.elf"
+            }
+        ]
+    }
+}

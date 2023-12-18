@@ -1,0 +1,30 @@
+{
+    "categories" : ["PowerShell","Macro"],
+    "description" : "Creates a powershell script that will create a macro word doc when run.",
+    "contentFile" : "psgenwordmacro.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"macro",
+            "description" : "The macro to add to the document. No default.",
+            "defaultValue" : ""   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation" :{
+        "compilationType" : "powershell",
+        "compilationAttributes": [
+            {
+                "name": "saveAs",
+                "description": "Name of the powershell file to be created, can be full path or just a name",
+                "defaultValue": "gendoc.ps1"
+            }
+        ]
+    },
+    
+    "runHint" : "If wordDocOut is relative it it'll end up in the current users documents folder."
+  
+}

