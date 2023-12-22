@@ -1,0 +1,31 @@
+{
+    "category" : ["PowerShell","AppLocker"],
+    "description" : "Generates the script required for the workflow compiler applocker bypass.",
+    "contentFile" : "psapplockerworkflowcompiler.txt",
+    "customAttributes" : [
+        {
+            "name":"inPath",
+            "description" : "The location of the C# file that will be run.",
+            "defaultValue" : "c:\\users\\public\\code.cs"   
+        },
+        {
+            "name":"outPath",
+            "description" : "The location where the script will output the xml  to run the executable.",
+            "defaultValue" : "c:\\users\\public\\run.xml"   
+        }
+    ],
+    
+     "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation" :{
+        "compilationType" : "powershell",
+        "compilationAttributes": [
+            {
+                "name": "saveAs",
+                "description": "Name of the powershell file to be created, can be full path or just a name",
+                "defaultValue": "run.txt"
+            }
+        ]
+    }
+}

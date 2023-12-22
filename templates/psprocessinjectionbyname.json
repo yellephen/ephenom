@@ -1,6 +1,6 @@
 {
     "category" : ["PowerShell","Process Injection"],
-    "description" : "Does a process injection with the chosen thing to do the thing that does the thing.",
+    "description" : "Does a process injection on the chosen process. Contains shellcode.",
     "contentFile" : "psprocessinjectionbyname.txt",
     
     "customAttributes" : [

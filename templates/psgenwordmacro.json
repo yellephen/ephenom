@@ -1,6 +1,6 @@
 {
     "categories" : ["PowerShell","Macro"],
-    "description" : "Creates a powershell script that will create a macro word doc when run.",
+    "description" : "Don't use this - use the ones starting with word. Creates a powershell script that will create a macro word doc when run.",
     "contentFile" : "psgenwordmacro.txt",
     
     "customAttributes" : [

