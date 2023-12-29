@@ -1,33 +1,46 @@
 {
-    "category" : ["jscript","shellcode"],
-    "description" : "JScript that runs a dll that does process injection0. Prepends an amsi bypass",
-    "contentFile" : "jscriptfromdllamsibypass.txt",
+    "categories": [
+        "exe",
+        "xor",
+        "sleep evasion",
+        "process hollowing"
+    ],
+    "description": "Executable that runs a process injection into the chosen process. XOR'd shell code with sleep sandbox evasion.",
+    "contentFile": "jsprocesshollowing.txt",
     "customAttributes": [
         {
             "name": "xorByte",
             "description": "The hex representation of the byte that the payload will be XOR'd with. Max 0xFF.",
             "defaultValue": "0x22"
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        },
+        {
+            "name":"processToHollow",
+            "description":"Process to mimi by hollowing, injecting and running. Full path to process executable on target. Escape backslashes.",
+            "defaultValue":"C:\\\\Windows\\\\System32\\\\svchost.exe"
         }
     ],
-
-    "shellCode" : {
-        "hasShellCode":true,
-        "format" : "csharp",
+    "shellCode": {
+        "hasShellCode": true,
+        "format": "csharp",
         "processor": "ep_csharp_xor"
-                        
     },
     "compilation": {
         "compilationType": "jscript",
-        "target" : "library",
+        "target": "library",
         "compilationAttributes": [
             {
                 "name": "architecture",
-                "description": "The architecture of the shellcode, x64 or x86.",
+                "description": "The architecture, x64 or x86.",
                 "defaultValue": "x64"
             },
             {
                 "name": "saveAs",
-                "description": "Name of library to be created, can be full path or just a name",
+                "description": "Name of the intermediate library file to be created, can be full path or just a name",
                 "defaultValue": "shell.dll"
             },
             {
