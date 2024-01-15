@@ -27,7 +27,7 @@
             {
                 "name": "saveAs",
                 "description": "Name of file to be created, can be full path or just a name",
-                "defaultValue": "printspoofernet_nonint.exe"
+                "defaultValue": "/tmp/printspoofernet_nonint.exe"
             }
         ]
     }

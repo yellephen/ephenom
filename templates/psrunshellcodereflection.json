@@ -1,6 +1,6 @@
 {
     "category" : ["PowerShell","Reflection"],
-    "description" : "Runs Shell Code with reflection.",
+    "description" : "Runs Shell Code with reflection. Contains shellcode.",
     "contentFile" : "psrunshellcodereflection.txt",
     
      "shellCode" : {
@@ -13,7 +13,7 @@
             {
                 "name": "saveAs",
                 "description": "Name of the powershell file to be created, can be full path or just a name",
-                "defaultValue": "run.txt"
+                "defaultValue": "/tmp/run.txt"
             }
         ]
     }

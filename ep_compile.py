@@ -10,17 +10,18 @@ def compile(compilationTemplate,content):
 ##########
     
     if compilationTemplate["compilationType"] == "csharp":
-        if os.path.exists("temp.cs"):
+        if os.path.exists("/tmp/temp.cs"):
             print("temp.cs already exists. Deleting.")
-            os.remove("temp.cs")
-        with open("temp.cs", 'w') as file:
+            os.remove("/tmp/temp.cs")
+        with open("/tmp/temp.cs", 'w') as file:
             file.write(content)
         
         target = compilationTemplate["target"]
         arch = attributes["architecture"]
         out = attributes["saveAs"]
+        dotnetversion = attributes["DotNetVersion"]
 
-        command = f"mcs temp.cs -target:{target} -platform:{arch} -out:{out}"
+        command = f"mcs /tmp/temp.cs -target:{target} -platform:{arch} -out:{out} -sdk:{dotnetversion}"
 
         if "requiredAssemblies" in compilationTemplate:
             for dll in compilationTemplate["requiredAssemblies"]:
@@ -48,15 +49,15 @@ def compile(compilationTemplate,content):
 # c
 ##########
     elif compilationTemplate["compilationType"] == "C":
-        if os.path.exists("temp.c"):
+        if os.path.exists("/tmp/temp.c"):
             print("temp.c already exists. Deleting.")
-            os.remove("temp.c")
-        with open("temp.c", 'w') as file:
+            os.remove("/tmp/temp.c")
+        with open("/tmp/temp.c", 'w') as file:
             file.write(content)
 
         out = attributes["saveAs"]
     
-        command = f"gcc -static -o {out} temp.c -z execstack"
+        command = f"gcc -static -o {out} /tmp/temp.c -z execstack"
 
         process = subprocess.run(command, shell=True, universal_newlines=True)
         print(process)
@@ -72,17 +73,17 @@ def compile(compilationTemplate,content):
 # jscript
 ##########
     elif compilationTemplate["compilationType"] == "jscript":    
-        if os.path.exists("temp.cs"):
+        if os.path.exists("/tmp/temp.cs"):
             print("temp.cs already exists. Deleting.")
-            os.remove("temp.cs")
-        with open("temp.cs", 'w') as file:
+            os.remove("/tmp/temp.cs")
+        with open("/tmp/temp.cs", 'w') as file:
             file.write(content)
         
         target = compilationTemplate["target"]
         arch = attributes["architecture"]
         out = attributes["saveAs"]
         jsout = attributes["saveJSAs"]
-        command = f"mcs temp.cs -target:{target} -platform:{arch} -out:{out}"
+        command = f"mcs /tmp/temp.cs -target:{target} -platform:{arch} -out:{out}"
   
         process = subprocess.run(command, shell=True, universal_newlines=True)
         
@@ -117,7 +118,7 @@ def compile(compilationTemplate,content):
         print(f"Saved to {os.path.abspath(file.name)}")
 
 ##########    
-# powershell
+# ASPX
 ##########
     elif compilationTemplate["compilationType"] == "aspx":
         out = attributes["saveAs"]

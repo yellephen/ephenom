@@ -25,7 +25,7 @@
         {
           "name": "saveAs",
           "description": "Name of the powershell file to be created, can be full path or just a name",
-          "defaultValue": "gendoc.ps1"
+          "defaultValue": "/tmp/gendoc.ps1"
         },
         {
           "name": "wordDocOut",

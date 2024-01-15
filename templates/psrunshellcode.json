@@ -1,6 +1,6 @@
 {
     "category" : ["PowerShell","Shell Code"],
-    "description" : "Powershell that runs shellcode.",
+    "description" : "Powershell that runs shellcode. Contains shellcode",
     "contentFile" : "psrunshellcode.txt",
     "shellCode" : {
         "hasShellCode":true,
@@ -12,7 +12,7 @@
             {
                 "name": "saveAs",
                 "description": "Name of the powershell file to be created, can be full path or just a name",
-                "defaultValue": "run.txt"
+                "defaultValue": "/tmp/run.txt"
             }
         ]
     }

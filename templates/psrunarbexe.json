@@ -2,7 +2,7 @@
 
 {
     "categories" : ["PowerShell","Executable","Cradle"],
-    "description" : "Calls and grabs an executable then runs it with the given parameters.",
+    "description" : "Calls and grabs an executable then runs it in memory with the given parameters.",
     "contentFile" : "psrunarbexe.txt",
     
     "customAttributes" : [
@@ -27,7 +27,7 @@
             {
                 "name": "saveAs",
                 "description": "Name of the powershell file to be created, can be full path or just a name",
-                "defaultValue": "run.txt"
+                "defaultValue": "/tmp/run.txt"
             }
         ]
     },
