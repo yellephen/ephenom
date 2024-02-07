@@ -1,0 +1,34 @@
+
+{
+    "categories": [
+        "html",
+        "phish"
+    ],
+    "description": "Simple html doc that has a link to an exploit",
+    "contentFile": "htmlphish.txt",
+    "customAttributes": [
+        {
+            "name": "payload",
+            "description": "Location of the url relative to host where the link in the phish will point. eg /misc/shell.exe.",
+            "defaultValue": "/misc/shell.exe"
+        },
+        {
+            "name": "downloadAs",
+            "description": "Name the file will be downloaded by default as on the phish target.",
+            "defaultValue": "shell.exe"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": false
+    },
+    "compilation": {
+        "compilationType": "txt",
+        "compilationAttributes": [
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "/tmp/phish.html"
+            }
+        ]
+    }
+}

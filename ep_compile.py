@@ -3,6 +3,7 @@ import os
 import ep_gensc
 import ep_pipeline
 
+
 def compile(compilationTemplate,content):
     attributes = getAttributes(compilationTemplate)
 ##########    
@@ -125,7 +126,24 @@ def compile(compilationTemplate,content):
         with open(f"{out}", 'w') as file:
             file.write(content)
         print(f"Saved to {os.path.abspath(file.name)}")
-
+##########    
+# TXT
+##########
+    elif compilationTemplate["compilationType"] == "txt":
+        out = attributes["saveAs"]
+        with open(f"{out}", 'w') as file:
+            file.write(content)
+        print(f"Saved to {os.path.abspath(file.name)}")
+##########    
+# donut
+##########
+#    elif compilationTemplate["compilationType"] == "donut":
+#        with open(f"{out}", 'w') as file:
+#            file.write(content)
+#        print(f"Saved to {os.path.abspath(file.name)}")
+##########    
+# Type Unknown
+##########
     else:
         print("Compilation type unknown, printing payload.")
         print(content)

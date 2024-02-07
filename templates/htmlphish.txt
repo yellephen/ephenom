@@ -1,0 +1,6 @@
+
+<html>
+<body>
+<a href="[[[[payload]]]]" download="[[[[downloadAs]]]]">DonwloadMe</a>
+</body>
+</html>

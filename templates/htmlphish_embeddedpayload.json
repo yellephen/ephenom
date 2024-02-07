@@ -1,0 +1,36 @@
+
+{
+    "categories": [
+        "html",
+        "phish"
+    ],
+    "description": "html doc that has an executable embedded in it that downloads when browsed to",
+    "contentFile": "htmlphish_embeddedpayload.txt",
+    "customAttributes": [
+        {
+            "name": "payload",
+            "description": "File location of existing exploit to embed. eg ~/misc/shell.exe.",
+            "fileProcessor": "b64File",
+            "defaultValue": "/home/kali/miscweb/shell.exe"
+        },
+        {
+            "name": "downloadAs",
+            "description": "Name the file will be downloaded by default as on the phish target.",
+            "defaultValue": "shell.exe"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": false
+    },
+    "compilation": {
+        "compilationType": "txt",
+        "compilationAttributes": [
+
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "/tmp/phishe.html"
+            }
+        ]
+    }
+}

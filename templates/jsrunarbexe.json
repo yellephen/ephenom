@@ -1,0 +1,31 @@
+{
+    "category" : ["js","exe"],
+    "description" : "Jscript that downloads and runs any executable.",
+    "contentFile" : "jsrunarbexe.txt",
+    "customAttributes": [
+        {
+            "name": "callbackURL",
+            "description": "Full URL of the executable to download to be run.",
+            "defaultValue": "http://[[[[ownIP]]]]/misc/shell.exe"
+        },
+        {
+            "name": "downloadAs",
+            "description": "Filename that the executable will be saved to on the target.",
+            "defaultValue": "C:\\users\\public\\shell.exe"
+        }
+    ],
+    "shellCode" : {
+        "hasShellCode":false
+    },
+    "compilation": {
+        "compilationType": "txt",
+        "compilationAttributes": [
+
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "/tmp/download.js"
+            }
+        ]
+    }
+}

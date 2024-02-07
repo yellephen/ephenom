@@ -1,0 +1,47 @@
+
+{
+    "categories": [
+        "exe",
+        "donut",
+        "sleep evasion"
+    ],
+    "description": "This obfuscates an executable for running on a protected target.",
+    "contentFile": "exedonutnetexe.txt",
+    "customAttributes": [
+        {
+            "name": "compile",
+            "description": "Whether or not to compile. Y/N",
+            "defaultValue": "Y"
+        },
+        {
+            "name": "shellCodeType",
+            "description": "This should always be the default [donut].",
+            "defaultValue": "donut"
+        }
+    ],
+    "shellCode": {
+        "hasShellCode": true,
+        "format": ""
+    },
+    "compilation": {
+        "compilationType": "csharp",
+        "target": "exe",
+        "compilationAttributes": [
+            {
+                "name": "architecture",
+                "description": "The architecture, x64 or x86.",
+                "defaultValue": "x64"
+            },
+            {
+                "name": "DotNetVersion",
+                "description": "The SDK that mono will compile to. Options are 2, 4, 4.5, 4.7.",
+                "defaultValue": "4.7"
+            },
+            {
+                "name": "saveAs",
+                "description": "Name of file to be created, can be full path or just a name",
+                "defaultValue": "/tmp/runme.exe"
+            }
+        ]
+    }
+}
